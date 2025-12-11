@@ -1,0 +1,17 @@
+# Step 1: Get the compartment OCID (if you don't have it)
+oci iam compartment list --all --query "data[?name=='richardwboase'].id | [0]" --raw-output
+
+# Step 2: Get VNIC attachments for the instance
+# Replace COMPARTMENT_OCID with the output from step 1
+oci compute vnic-attachment list --compartment-id COMPARTMENT_OCID --instance-id ocid1.instance.oc1.iad.anuwcljtfzzmudacrl6s44kiau5oijx5nh2umskoxj2tzwyzxhaa4mdwcboa --query "data[0].\"vnic-id\"" --raw-output
+
+# Step 3: Get the private IP OCID
+# Replace VNIC_ID with the output from step 2
+oci network private-ip list --vnic-id VNIC_ID --query "data[?\"ip-address\"=='10.0.0.191'].id | [0]" --raw-output
+
+# Step 4: Create and assign the public IP
+# Replace COMPARTMENT_OCID with output from step 1
+# Replace PRIVATE_IP_OCID with output from step 3
+oci network public-ip create --compartment-id COMPARTMENT_OCID --lifetime EPHEMERAL --private-ip-id PRIVATE_IP_OCID
+
+# The last command will output JSON with the public IP address in the "ip-address" field

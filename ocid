@@ -1,0 +1,31 @@
+cat > assign_public_ip.sh << 'EOF'
+  #!/bin/bash
+
+  COMPARTMENT_ID="ocid1.tenancy.oc1..aaaa
+  aaaajh6giiodinmkqkuni5gmbw56zuybyukox3x
+  mbmbc3ub7myxie53a"
+  INSTANCE_ID="ocid1.instance.oc1.iad.anu
+  wcljtfzzmudacrl6s44kiau5oijx5nh2umskoxj
+  2tzwyzxhaa4mdwcboa"
+
+  echo "Step 1: Getting VNIC ID..."
+  VNIC_ID=$(oci compute vnic-attachment
+  list --compartment-id $COMPARTMENT_ID
+  --instance-id $INSTANCE_ID --query
+  "data[0].\"vnic-id\"" --raw-output)
+  echo "VNIC ID: $VNIC_ID"
+
+  echo "Step 2: Getting Private IP 
+  OCID..."
+  PRIVATE_IP_ID=$(oci network private-ip
+  list --vnic-id $VNIC_ID --query
+  "data[?\"ip-address\"=='10.0.0.191'].id
+   | [0]" --raw-output)
+  echo "Private IP OCID: $PRIVATE_IP_ID"
+
+  echo "Step 3: Creating public IP..."
+  oci network public-ip create
+  --compartment-id $COMPARTMENT_ID
+  --lifetime EPHEMERAL --private-ip-id
+  $PRIVATE_IP_ID
+  EOF

@@ -1,0 +1,110 @@
+/* Clean, Professional WordPress Design Effects */
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Simple Hover Effects */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* Reveal Animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Button Styles */
+.btn-modern {
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.btn-modern:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* Service Cards */
+.service-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Clean Shadow */
+.shadow-soft {
+    box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+}
+
+.shadow-medium {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Header Sticky Effect */
+header {
+    transition: box-shadow 0.3s ease, padding 0.3s ease;
+}
+
+/* Portfolio Items */
+.portfolio-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+/* Testimonial Cards */
+.testimonial-card {
+    transition: background 0.3s ease;
+}
+
+.testimonial-card:hover {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/* Form Inputs */
+input, textarea, select {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    outline: none;
+}
+
+/* Links */
+a {
+    transition: color 0.3s ease;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem !important;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .btn-modern {
+        display: block;
+        width: 100%;
+        margin: 0.5rem 0 !important;
+    }
+}
